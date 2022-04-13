@@ -313,7 +313,7 @@ class ActionPropDenseCap(nn.Module):
 
     def inference(self, x, actual_frame_length, sampling_sec,
                   min_prop_num, max_prop_num,
-                  min_prop_num_before_nms, pos_thresh, stride_factor,
+                  min_prop_num_before_nms, pos_thresh, stride_factor, entire_video=False,
                   gated_mask=False):
         B, T, _ = x.size()
         dtype = x.data.type()
@@ -461,6 +461,9 @@ class ActionPropDenseCap(nn.Module):
                     break
 
             mid1_t = time.time()
+
+            if entire_video:
+                pred_masks = []
 
             if len(pred_masks) == 0: # append all-one window if no window is proposed
                 pred_masks.append(torch.ones(1, T, 1).type(dtype))

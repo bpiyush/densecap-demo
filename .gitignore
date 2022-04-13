@@ -1,0 +1,10 @@
+# pycache
+__pycache__
+.ipynb_checkpoints
+
+checkpoint/
+data/anet/
+log/
+tools/densevid_eval/
+
+*.tar.gz
